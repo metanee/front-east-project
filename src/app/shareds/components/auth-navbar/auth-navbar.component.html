@@ -53,7 +53,7 @@
       <ul class="dropdown-menu settings-menu dropdown-menu-right">
         <li><a class="dropdown-item" [routerLink]="['/', AppURL.Authen ,AuthURL.Setting]"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
         <li><a class="dropdown-item" [routerLink]="['/', AppURL.Authen ,AuthURL.Profile]"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-        <li><a class="dropdown-item" [routerLink]="['/', AppURL.Login]"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+        <li><a class="dropdown-item" (click)="onLogout()"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
       </ul>
     </li>
   </ul>

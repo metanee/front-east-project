@@ -11,7 +11,8 @@ import { Register } from '../../shareds/model/register.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  private register: Register;
+  private register: Register = new Register();
+
 
   constructor(
     private builder: FormBuilder,
