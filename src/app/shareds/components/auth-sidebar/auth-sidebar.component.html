@@ -4,7 +4,7 @@
     <div *ngIf="userLogin"class="app-sidebar__user">
         <img *ngIf="userLogin.image" class="app-sidebar__user-avatar" [src]="UserLogin.image" alt="User Image">
         <img *ngIf="!userLogin.image" class="app-sidebar__user-avatar" src="assets/images/no-image-profile.png" alt="User Image">
-        <div>
+        <div class= "app-sidebar-ud">
             <p class="app-sidebar__user-name">
               {{ userLogin.firstName }} {{ userLogin.lastName }}
             </p>
@@ -17,7 +17,7 @@
         <li class="treeview" routerLinkActive = 'is-expanded'>
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-users"></i>
-                <span class="app-menu__label">ส่วนของสมาชิก</span>
+                <span class="app-menu__label">พนักงาน</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
             <ul class="treeview-menu" routerLinkActive = 'is-expanded'>
@@ -27,8 +27,46 @@
                     </a>
                 </li>
                 <li>
+                    <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.Company]" routerLinkActive = 'active'>
+                        <i class="icon fa fa-circle-o"></i> รายชื่อพนักงานปลดประจำการ
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview" routerLinkActive = 'is-expanded'>
+            <a class="app-menu__item" href="#" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-users"></i>
+                <span class="app-menu__label">ฐานผู้ใช้</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu" routerLinkActive = 'is-expanded'>
+                <li>
+                    <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.Member] " routerLinkActive = 'active'>
+                        <i class="icon fa fa-circle-o"></i> รายชื่อผู้ใช้
+                    </a>
+                </li>
+                <li>
                     <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.FindUser]" routerLinkActive = 'active'>
                         <i class="icon fa fa-circle-o"></i> ค้นหาผู้ใช้งาน
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview" routerLinkActive = 'is-expanded'>
+            <a class="app-menu__item" href="#" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-users"></i>
+                <span class="app-menu__label">ฐานบริษัท</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu" routerLinkActive = 'is-expanded'>
+                <li>
+                    <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.Company] " routerLinkActive = 'active'>
+                        <i class="icon fa fa-circle-o"></i> รายชื่อบริษัท
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.CateCompany]" routerLinkActive = 'active'>
+                        <i class="icon fa fa-circle-o"></i> สมัคสมาชิกบริษัท
                     </a>
                 </li>
             </ul>

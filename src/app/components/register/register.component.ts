@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppURL } from '../../app.url';
-import { AlertService } from '../../shareds/components/services/alert-service/alert.service';
+import { AlertService } from '../../shareds/services/alert-service/alert.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { AccountService } from '../../shareds/services/account-service/account.service';
 import { Register } from '../../shareds/model/register.model';
+import { ValidatorsService } from '../../shareds/services/validators-service/validators.service';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,8 @@ export class RegisterComponent implements OnInit {
     private builder: FormBuilder,
     private alert: AlertService,
     private account: AccountService,
+    private validators: ValidatorsService
+
   ) {
     this.initialCreateFormData();
   }
@@ -32,6 +35,7 @@ export class RegisterComponent implements OnInit {
     this.account.onRegister(this.form.value).subscribe(
       res => {
         console.log(res);
+        this.alert.notify("สมัคสมาชิกเรียบร้อยแล้ว กรุณาตรวจสอบรหัสผ่านได้ที่ Email","info")
 
       },
       error => {
@@ -45,26 +49,14 @@ export class RegisterComponent implements OnInit {
   // สร้างฟอร์ม
   private initialCreateFormData() {
     this.form = this.builder.group({
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required, this.validators.isPassword]],
       email: ['', [Validators.required, Validators.email]],
-      cemail: ['', [Validators.required, Validators.email, this.compareEmail('email')]]
+      cemail: ['', [Validators.required, Validators.email, this.validators.compareEmail('email')]],
+      idcard: ['',[Validators.required,this.validators.isIdcard]]
     });
   }
 
-  // สร้าง validate เอง
-  private compareEmail(emailField: string) {
-    return function (confirm_email: AbstractControl) {
-      if (!confirm_email.parent) return;
-      const email = confirm_email.parent.get(emailField);
-      const emailSubscripe = email.valueChanges.subscribe(() => {
-        confirm_email.updateValueAndValidity();
-        emailSubscripe.unsubscribe();
-      });
-      if (confirm_email.value === email.value)
-        return;
-      return { compare: true };
-    }
-  }
+
 
 
   ngOnInit() {

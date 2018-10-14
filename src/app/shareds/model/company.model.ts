@@ -7,9 +7,5 @@ export class Company {
   public email: string;
   public phone: string;
   public enabled: boolean;
-
-
-  /*public authorities : [{
-  authority: [0].authority;
-  }];*/
+  public authorities : any;
 }
