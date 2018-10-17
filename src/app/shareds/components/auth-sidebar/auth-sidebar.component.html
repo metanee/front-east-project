@@ -2,8 +2,8 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar" >
     <div *ngIf="userLogin"class="app-sidebar__user">
-        <img *ngIf="userLogin.image" class="app-sidebar__user-avatar" [src]="UserLogin.image" alt="User Image">
-        <img *ngIf="!userLogin.image" class="app-sidebar__user-avatar" src="assets/images/no-image-profile.png" alt="User Image">
+        <img *ngIf="userLogin.partImage" class="app-sidebar__user-avatar" [src]="userLogin.partImage" alt="User Image">
+        <img *ngIf="!userLogin.partImage" class="app-sidebar__user-avatar" src="assets/images/no-image-profile.png" alt="User Image">
         <div class= "app-sidebar-ud">
             <p class="app-sidebar__user-name">
               {{ userLogin.firstName }} {{ userLogin.lastName }}
@@ -14,7 +14,7 @@
     <ul class="app-menu">
         <li><a class="app-menu__item " routerLinkActive = 'is-expanded'  [routerLink]="['/', AppURL.Authen, AuthURL.Dashboard]"><i class="app-menu__icon fa fa-dashboard"></i><span
                     class="app-menu__label">Dashboard</span></a></li>
-        <li class="treeview" routerLinkActive = 'is-expanded'>
+        <li *ngIf="userLogin.role == Role.Owner" class="treeview" routerLinkActive = 'is-expanded'>
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-users"></i>
                 <span class="app-menu__label">พนักงาน</span>
@@ -33,7 +33,7 @@
                 </li>
             </ul>
         </li>
-        <li class="treeview" routerLinkActive = 'is-expanded'>
+        <li *ngIf="userLogin.role != Role.Member" class="treeview" routerLinkActive = 'is-expanded'>
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-users"></i>
                 <span class="app-menu__label">ฐานผู้ใช้</span>
@@ -45,14 +45,10 @@
                         <i class="icon fa fa-circle-o"></i> รายชื่อผู้ใช้
                     </a>
                 </li>
-                <li>
-                    <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.FindUser]" routerLinkActive = 'active'>
-                        <i class="icon fa fa-circle-o"></i> ค้นหาผู้ใช้งาน
-                    </a>
-                </li>
+
             </ul>
         </li>
-        <li class="treeview" routerLinkActive = 'is-expanded'>
+        <li *ngIf="userLogin.role == Role.Admin" class="treeview" routerLinkActive = 'is-expanded'>
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-users"></i>
                 <span class="app-menu__label">ฐานบริษัท</span>

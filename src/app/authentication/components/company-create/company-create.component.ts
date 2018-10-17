@@ -16,7 +16,7 @@ export class CompanyCreateComponent implements OnInit {
   positionItems: string[];
   roleItems: IRoleAccount[] = [
     IRoleAccount.Member,
-    IRoleAccount.Employee,
+    IRoleAccount.Owner,
     IRoleAccount.Admin
   ];
 

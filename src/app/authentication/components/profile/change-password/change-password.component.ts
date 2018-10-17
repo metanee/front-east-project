@@ -33,11 +33,12 @@ export class ChangePasswordComponent implements OnInit {
         return this.alert.someting_wrong();
         this.account.onChangePassword(this.form.value).subscribe(
           res => {
+            this.alert.notify("เปลี่ยนรหัสผ่านเรียบร้อยแล้ว",'info')
             console.log(res);
           },
           error => {
             console.log(error);
-            return this.alert.someting_wrong();
+            return this.alert.someting_wrong("กรุณากรอกรหัสผ่านเก่าให้ถูกต้อง");
 
           }
         );

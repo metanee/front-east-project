@@ -11,6 +11,9 @@ import { ViewUserComponent } from './components/user-list/view-user/view-user.co
 import { CompanyListComponent } from './components/company-list/company-list.component';
 import { EmployeeEditComponent } from './components/employees/employee-edit/employee-edit.component';
 import { EmployeeCommentComponent } from './components/employees/employee-comment/employee-comment.component';
+import { UserRoleGuard } from '../guards/user-role.guard';
+import { IRoleAccount } from '../shareds/model/user.model';
+import { ViewCommentComponent } from './components/user-list/view-comment/view-comment.component';
 
 const RouteLists: Routes = [
   { path: '', redirectTo: AuthURL.Dashboard, pathMatch: 'full' },
@@ -18,13 +21,19 @@ const RouteLists: Routes = [
   { path: AuthURL.Setting, component: SettingComponent },
   { path: AuthURL.Profile, component: ProfileComponent },
   { path: AuthURL.Employee, component: EmployeesComponent },
-  { path: AuthURL.Member, component: UserListComponent },
-  { path: AuthURL.ViewUser+'/:id', component: ViewUserComponent },
+  {
+    path: AuthURL.Member, component: UserListComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      roles: [IRoleAccount.Admin, IRoleAccount.Owner]}
+    },
+  { path: AuthURL.ViewUser + '/:id', component: ViewUserComponent },
   { path: AuthURL.CateCompany, component: CompanyCreateComponent },
   { path: AuthURL.Company, component: CompanyListComponent },
-  { path: AuthURL.EditUser+'/:id', component: UserEditComponent },
-  { path: AuthURL.EditEmployee+'/:id', component: EmployeeEditComponent },
-  { path: AuthURL.Comment+'/:id', component: EmployeeCommentComponent },
+  { path: AuthURL.EditUser + '/:id', component: UserEditComponent },
+  { path: AuthURL.EditEmployee + '/:id', component: EmployeeEditComponent },
+  { path: AuthURL.Comment + '/:id', component: EmployeeCommentComponent },
+  { path: AuthURL.ViewComment+ '/:id', component: ViewCommentComponent}
 
 
 ];

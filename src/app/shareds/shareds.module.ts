@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BsDropdownModule, ModalModule, PaginationModule } from 'ngx-bootstrap';
+import { CommonModule, DatePipe } from '@angular/common';
+import { BsDropdownModule, ModalModule, PaginationModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { AuthNavbarComponent } from './components/auth-navbar/auth-navbar.component';
 import { AuthSidebarComponent } from './components/auth-sidebar/auth-sidebar.component';
 import { AuthContentComponent } from './components/auth-content/auth-content.component';
@@ -13,6 +13,11 @@ import { CrurrentService } from './services/get-crurrent-service/crurrent.servic
 import { ValidatorsService } from './services/validators-service/validators.service';
 import { SharedsService } from './services/shareds-service/shareds.service';
 
+// เพิ่มภาษาไทยให้กับ Datepicker
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { thLocale } from 'ngx-bootstrap/locale';
+defineLocale('th', thLocale);
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +26,9 @@ import { SharedsService } from './services/shareds-service/shareds.service';
     FormsModule,
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+
 
 
 
@@ -40,7 +47,9 @@ import { SharedsService } from './services/shareds-service/shareds.service';
     ReactiveFormsModule,
     FormsModule,
     ModalModule,
-    PaginationModule
+    PaginationModule,
+    BsDatepickerModule,
+    DatePipe
   ],
 
   providers: [
@@ -49,7 +58,8 @@ import { SharedsService } from './services/shareds-service/shareds.service';
     CrurrentService,
     ValidatorsService,
     Register,
-    SharedsService
+    SharedsService,
+    DatePipe
   ]
 })
 export class SharedsModule { }

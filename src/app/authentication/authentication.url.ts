@@ -10,4 +10,5 @@ export const AuthURL = {
   CateCompany:'catecompany',
   ViewUser: 'viewuser',
   Comment: 'comment',
+  ViewComment: 'viewcomment'
 };

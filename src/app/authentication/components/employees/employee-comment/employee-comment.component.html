@@ -33,7 +33,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <img *ngIf="!form.value.partImage" src="assets/images/no-image-profile.png" class="img-fluid img-thumbnail">
-                                    <img *ngIf="form.value.partImage" [src]="'http://localhost:8080/image/user/'+form.value.partImage" class="img-fluid img-thumbnail">
+                                    <img *ngIf="form.value.partImage" [src]="form.value.partImage" class="img-fluid img-thumbnail">
                                 </div>
 
                             </div>

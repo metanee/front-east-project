@@ -41,6 +41,17 @@ export class UserService {
     return this.http.get(url, { headers: headers });
   }
 
+  //ดึงข้อมูล User จาก Id
+  getCommentbyId(id: number) {
+    let url = this.serverPath +"/employee/getCommentList/" + id;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'x-auth-token': localStorage.getItem('xAuthToken')
+    });
+
+    return this.http.get(url, { headers: headers });
+  }
+
   //ลบข้อมูล User
   deleteMember(userId: number) {
     let url = this.serverPath + "/user/remove";

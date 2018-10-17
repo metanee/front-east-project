@@ -49,7 +49,7 @@ export class ViewUserComponent implements OnInit {
             this.alert.notify('เพิ่มพนักงานสำเร็จ รอการยืนยันจากพนักงาน', 'info');
           },
           err => {
-            this.alert.notify(err.Message)
+            this.alert.notify("ผู้ใช้ยังอยู่ในสถานะทำงาน")
           }
         );
     });
@@ -166,6 +166,14 @@ export class ViewUserComponent implements OnInit {
         this.router.navigate(['/', AppURL.Authen, AuthURL.Member]);
       }
     );
+  }
+
+  onViewComment(){
+    this.router.navigate(['',
+      AppURL.Authen,
+      AuthURL.ViewComment,
+      this.userId
+    ]);
   }
   ngOnInit() {
   }

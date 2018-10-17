@@ -1,5 +1,6 @@
-export class User{
+import { IRoleAccount } from "./user.model";
 
+export class cuuren {
   public id:number ;
 	public username: string;
 	public password: string;
@@ -28,29 +29,6 @@ export class User{
   public email: string;
   public partImage: string;
   public idcard: string;
-	public phone: string;
-}
-
-export enum IRoleAccount {
-  Member = 1,
-  Owner,
-  Admin
-}
-
-export class IUser{
-  user: User[];
-  totalItems: number;
-
-}
-export class UserSearch {
-  searchText?: string;
-  searchType?: string;
-
-  startPage: number;
-  limitPage: number;
-}
-
-export class UserSearchKey {
-  key: string;
-  value: string;
+  public phone: string;
+  public role?: IRoleAccount;
 }

@@ -1,250 +1,251 @@
 <app-auth-content>
-    <div class="app-title">
-        <div>
-            <h1>
-                <i class="fa fa-user"></i> ข้อมูลส่วนผู้ใช้งาน
-            </h1>
-            <p>หน้าแก้แสดงข้อมูลผู้ใช้งาน</p>
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item">
-                <i class="fa fa-home fa-lg"></i>
-            </li>
-            <li class="breadcrumb-item">
-                <a >ข้อมูลส่วนผู้ใช้</a>
-            </li>
-        </ul>
+  <div class="app-title">
+    <div>
+      <h1>
+        <i class="fa fa-user"></i> ข้อมูลส่วนผู้ใช้งาน
+      </h1>
+      <p>หน้าแก้แสดงข้อมูลผู้ใช้งาน</p>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="tile">
-                <!-- ส่วนหัว -->
-                <div class="tile-title-w-btn">
-                    <h3 class="title">
-                        <i class="fa fa-edit"></i> ข้อมูลส่วนตัวผู้ใช้งาน
-                    </h3>
-                    <p>
-                        <button (click)="openModal(template)" type="button" class="btn btn-primary icon-btn">
-                            <i class="fa fa-key"></i> ดูคอมเมนท์จากบริษัท
-                        </button>
-                        <button (click)="onAddEmployee()" type="button" class="btn btn-primary icon-btn">
-                            <i class="fa fa-key"></i> เพิ่มพนักงานเข้าบริษัท
-                        </button>
-
-                    </p>
-
-                </div>
-
-                <!-- ส่วนฟอร์ม -->
-                <div class="tile-body">
-                    <form [formGroup]="form">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <img *ngIf="!form.value.partImage" src="assets/images/no-image-profile.png" class="img-fluid img-thumbnail">
-                                    <img *ngIf="form.value.partImage" [src]="'http://localhost:8080/image/user/'+form.value.partImage"
-                                        class="img-fluid img-thumbnail">
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" (change)="onConvertImage(inputFile)" (change)="uploadService.fileChangeEvent($event)"
-                                        #inputFile>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="">อีเมล์</label>
-                                    <input type="text" class="form-control" formControlName="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">หมายเลขบัตรประชาชน</label>
-                                    <input type="text" class="form-control" formControlName="idcard">
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="">ชื่อ</label>
-                                            <input type="text" class="form-control" formControlName="firstName">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="">นามสกุล</label>
-                                            <input type="text" class="form-control" formControlName="lastName">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="">วันเกิด</label>
-                                            <input type="text" class="form-control" formControlName="birthDay">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="">เพศ</label>
-                                            <input type="text" class="form-control" formControlName="gender">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="">สัญชาติ</label>
-                                            <input type="text" class="form-control" formControlName="nationality">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="">ศาสนา</label>
-                                            <input type="text" class="form-control" formControlName="religion">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="">เบอร์โทรศํพท์</label>
-                                            <input type="text" class="form-control" formControlName="phone">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">ที่อยู่ปัจจุบัน</label>
-                                    <textarea type="text" class="form-control" formControlName="address"> </textarea>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                        <hr>
-                        <h3 class="title">
-                            <i class="fa fa-edit"></i> การศึกษา
-                        </h3>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">การศึกษา</label>
-                                    <input type="text" class="form-control" formControlName="education">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">สถาบันศึกษา</label>
-                                    <input type="text" class="form-control" formControlName="institute">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">คณะ</label>
-                                    <input type="text" class="form-control" formControlName="faculty">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">สาขา</label>
-                                    <input type="text" class="form-control" formControlName="branch">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">ปีที่เริมการศึกษา</label>
-                                    <input type="text" class="form-control" formControlName="startyearEducation">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">ปีที่จบการศึกษา</label>
-                                    <input type="text" class="form-control" formControlName="endyearEducation">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">เกรดเฉลี่ย</label>
-                                    <input type="text" class="form-control" formControlName="gpaEducation">
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-
-                        <h3 class="title">
-                            <i class="fa fa-edit"></i> ประวัติการทำงานล่าสุด
-                        </h3>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="">ระยะเวลาตั้งแต่</label>
-                                    <input type="text" class="form-control" formControlName="startmonthJobexp">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="">ปี (ค.ศ)</label>
-                                    <input type="text" class="form-control" formControlName="startyearhJobexp">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="">จนถึง</label>
-                                    <input type="text" class="form-control" formControlName="endyearJobexp">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="">ปี (ค.ศ)</label>
-                                    <input type="text" class="form-control" formControlName="endmonthJobexp">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">ชื่อบริษัท</label>
-                                    <input type="text" class="form-control" formControlName="companyNameJobexp">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">ตำแหน่ง</label>
-                                    <input type="text" class="form-control" formControlName="careerJobexp">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="">เงินเดือน</label>
-                                    <input type="text" class="form-control" formControlName="salaryJobexp">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">ลักษณะงานที่ทำ</label>
-                            <textarea type="text" class="form-control" formControlName="descriptionJobexp"> </textarea>
-                        </div>
-
-                        <hr>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-save"></i> บันทึกข้อมูลโปรไฟล์
-                            </button>
-                        </div>
-                    </form>
-                </div>
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item">
+        <i class="fa fa-home fa-lg"></i>
+      </li>
+      <li class="breadcrumb-item">
+        <a>ข้อมูลส่วนผู้ใช้</a>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <!-- ส่วนหัว -->
+        <div class="tile-title-w-btn">
+          <h3 class="title">
+            <i class="fa fa-edit"></i> ข้อมูลส่วนตัวผู้ใช้งาน
+          </h3>
+          <div class="btn-group" dropdown>
+              <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                      aria-controls="dropdown-basic">
+                กรุณา เลือกหัวข้อ <span class="caret"></span>
+              </button>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                  role="menu" aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item" (click)="onViewComment()" > <i class="fa fa-key"></i>ดูคอมเมนท์จากบริษัท</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="onAddEmployee()">เพิ่มพนักงานเข้าบริษัท</a>
+                </li>
+              </ul>
             </div>
+
+
         </div>
+
+        <!-- ส่วนฟอร์ม -->
+        <div class="tile-body">
+          <form [formGroup]="form">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <img *ngIf="!form.value.partImage" src="assets/images/no-image-profile.png" class="img-fluid img-thumbnail">
+                  <img *ngIf="form.value.partImage" [src]="form.value.partImage" class="img-fluid img-thumbnail">
+                </div>
+
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="">อีเมล์</label>
+                  <input type="text" class="form-control" formControlName="email">
+                </div>
+                <div class="form-group">
+                  <label for="">หมายเลขบัตรประชาชน</label>
+                  <input type="text" class="form-control" formControlName="idcard">
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="">ชื่อ</label>
+                      <input type="text" class="form-control" formControlName="firstName">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="">นามสกุล</label>
+                      <input type="text" class="form-control" formControlName="lastName">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="">วันเกิด</label>
+                      <input type="text" class="form-control" formControlName="birthDay">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="">เพศ</label>
+                      <input type="text" class="form-control" formControlName="gender">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="">สัญชาติ</label>
+                      <input type="text" class="form-control" formControlName="nationality">
+
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="">ศาสนา</label>
+                      <input type="text" class="form-control" formControlName="religion">
+
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="">เบอร์โทรศํพท์</label>
+                      <input type="text" class="form-control" formControlName="phone">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="">ที่อยู่ปัจจุบัน</label>
+                  <textarea type="text" class="form-control" formControlName="address"> </textarea>
+                </div>
+
+
+
+              </div>
+            </div>
+            <hr>
+            <h3 class="title">
+              <i class="fa fa-edit"></i> การศึกษา
+            </h3>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">การศึกษา</label>
+                  <input type="text" class="form-control" formControlName="education">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">สถาบันศึกษา</label>
+                  <input type="text" class="form-control" formControlName="institute">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">คณะ</label>
+                  <input type="text" class="form-control" formControlName="faculty">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">สาขา</label>
+                  <input type="text" class="form-control" formControlName="branch">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">ปีที่เริมการศึกษา</label>
+                  <input type="text" class="form-control" formControlName="startyearEducation">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">ปีที่จบการศึกษา</label>
+                  <input type="text" class="form-control" formControlName="endyearEducation">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">เกรดเฉลี่ย</label>
+                  <input type="text" class="form-control" formControlName="gpaEducation">
+                </div>
+              </div>
+            </div>
+            <hr>
+
+            <h3 class="title">
+              <i class="fa fa-edit"></i> ประวัติการทำงานล่าสุด
+            </h3>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="">ระยะเวลาตั้งแต่</label>
+                  <input type="text" class="form-control" formControlName="startmonthJobexp">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="">ปี (ค.ศ)</label>
+                  <input type="text" class="form-control" formControlName="startyearhJobexp">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="">จนถึง</label>
+                  <input type="text" class="form-control" formControlName="endyearJobexp">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="">ปี (ค.ศ)</label>
+                  <input type="text" class="form-control" formControlName="endmonthJobexp">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">ชื่อบริษัท</label>
+                  <input type="text" class="form-control" formControlName="companyNameJobexp">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">ตำแหน่ง</label>
+                  <input type="text" class="form-control" formControlName="careerJobexp">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="">เงินเดือน</label>
+                  <input type="text" class="form-control" formControlName="salaryJobexp">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">ลักษณะงานที่ทำ</label>
+              <textarea type="text" class="form-control" formControlName="descriptionJobexp"> </textarea>
+            </div>
+
+            <hr>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save"></i> บันทึกข้อมูลโปรไฟล์
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 </app-auth-content>
 
 
 <ng-template #template>
-    <app-change-password [modalRef]="modalRef"></app-change-password>
+  <app-change-password [modalRef]="modalRef"></app-change-password>
 </ng-template>

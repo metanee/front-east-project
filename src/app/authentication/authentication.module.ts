@@ -14,6 +14,7 @@ import { ViewUserComponent } from './components/user-list/view-user/view-user.co
 import { CompanyListComponent } from './components/company-list/company-list.component';
 import { EmployeeEditComponent } from './components/employees/employee-edit/employee-edit.component';
 import { EmployeeCommentComponent } from './components/employees/employee-comment/employee-comment.component';
+import { ViewCommentComponent } from './components/user-list/view-comment/view-comment.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { EmployeeCommentComponent } from './components/employees/employee-commen
     CompanyListComponent,
     EmployeeEditComponent,
     EmployeeCommentComponent,
+    ViewCommentComponent,
 
   ],
 

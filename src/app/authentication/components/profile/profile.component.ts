@@ -4,9 +4,10 @@ import { AccountService } from '../../../shareds/services/account-service/accoun
 import { AlertService } from '../../../shareds/services/alert-service/alert.service';
 import { User } from '../../../shareds/model/user.model';
 import { CrurrentService } from '../../../shareds/services/get-crurrent-service/crurrent.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService, BsLocaleService } from 'ngx-bootstrap';
 import { SharedsService } from '../../../shareds/services/shareds-service/shareds.service';
 import { UploadService } from '../../../shareds/services/uploadimage-service/upload.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,8 @@ export class ProfileComponent implements OnInit {
   private user: User = new User();
   form: FormGroup;
   modalRef: BsModalRef;
+  public setdob: string;
+
 
   nationalityItem: any[] = [
     'ไทย',
@@ -41,9 +44,15 @@ export class ProfileComponent implements OnInit {
     private alert: AlertService,
     private shareds: SharedsService,
     private modalService: BsModalService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private localeService: BsLocaleService,
+    private datePipe: DatePipe
+
+
 
   ) {
+     // เปลี่ยน Datepicker เป็นภาษาไทย
+     this.localeService.use('th');
     this.initialLoadUpdateFormData();
     this.initialCreateFormData();
   }
@@ -131,7 +140,9 @@ export class ProfileComponent implements OnInit {
       this.form.controls['username'].setValue(this.user.username);
       this.form.controls['password'].setValue(this.user.password);
       this.form.controls['gender'].setValue(this.user.gender);
-      this.form.controls['birthDay'].setValue(this.user.birthDay);
+      this.setdob = this.datePipe.transform(this.user.birthDay, 'dd/MM/yyyy');
+      console.log(this.setdob)
+      this.form.controls['birthDay'].setValue(this.setdob);
       this.form.controls['nationality'].setValue(this.user.nationality);
       this.form.controls['address'].setValue(this.user.address);
       this.form.controls['religion'].setValue(this.user.religion);

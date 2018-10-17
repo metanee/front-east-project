@@ -9,11 +9,13 @@
     <form class="login-form" [formGroup]="form" (submit)="onSubmit()">
       <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user-plus"></i>Register</h3>
       <div class="form-group">
-        <label class="control-label">ชื่อผู้ใช้</label>
+        <label class="control-label">ชื่อผู้ใช้</label>&nbsp;
+        <span *ngIf="usernameExists" style="color:red;">มีชื่อผู้ใช้นี้ในระบบแล้ว </span>
         <input class="form-control" formControlName="username" type="text" placeholder="ตั้งชื่อผู้ใช้ (6-15) ตัวอักษร" autofocus>
       </div>
       <div class="form-group">
-        <label class="control-label">อีเมล</label>
+        <label class="control-label">อีเมล</label>&nbsp;
+        <span *ngIf="emailExists" style="color:red;">มีอีเมลนี้ในระบบแล้ว </span>
         <input class="form-control" formControlName="email" type="email" placeholder="กรุณากรอกอีเมล">
       </div>
       <div class="form-group">
@@ -21,7 +23,8 @@
         <input class="form-control" formControlName="cemail" type="email" placeholder="ยืนยันอีเมล">
     </div>
     <div class="form-group">
-        <label class="control-label">รหัสประจำตัวประชาชน</label>
+        <label class="control-label">รหัสประจำตัวประชาชน</label>&nbsp;
+        <span *ngIf="idcardExists" style="color:red;">มีหมายเลขบัตรประชาชนในระบบแล้ว </span>
         <input class="form-control" formControlName="idcard" type="text" placeholder="รหัสบัตรประจำตัว 13 หลัก " autofocus>
       </div>
 
