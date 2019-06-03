@@ -37,15 +37,30 @@
                           <div class="col-sm-4">
                               <div class="form-group">
                                   <img *ngIf="!form.value.partImage" src="assets/images/no-image-profile.png" class="img-fluid img-thumbnail">
-                                  <img *ngIf="form.value.partImage" [src]="'http://localhost:8080/image/user/'+form.value.partImage" class="img-fluid img-thumbnail">
+                                  <img *ngIf="form.value.partImage" [src]="form.value.partImage" class="img-fluid img-thumbnail">
                               </div>
 
                           </div>
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="">รหัสพนักงาน</label>
-                                  <input type="text" class="form-control" formControlName="employeeId">
+                                  <input type="text" class="form-control" formControlName="employeeId" readonly>
                               </div>
+
+                              <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">ชื่อพนักงาน</label>
+                                        <input type="text" class="form-control" formControlName="firstNameEmployee">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">นามสกุลพนักงาน</label>
+                                        <input type="text" class="form-control" formControlName="lastNameEmployee">
+                                    </div>
+                                </div>
+                            </div>
 
                               <div class="row">
                                   <div class="col-sm-6">
@@ -62,20 +77,7 @@
                                   </div>
                               </div>
 
-                              <div class="row">
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label for="">ชื่อพนักงาน</label>
-                                          <input type="text" class="form-control" formControlName="firstNameEmployee">
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-6">
-                                      <div class="form-group">
-                                          <label for="">นามสกุลพนักงาน</label>
-                                          <input type="text" class="form-control" formControlName="lastNameEmployee">
-                                      </div>
-                                  </div>
-                              </div>
+
 
 
                           </div>

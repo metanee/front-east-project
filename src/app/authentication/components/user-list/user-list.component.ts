@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { User, UserSearchKey, UserSearch, IUser, } from '../../../shareds/model/user.model';
+import { User, UserSearchKey, UserSearch, IUser, IRoleAccount, INowJob, } from '../../../shareds/model/user.model';
 import { UserService } from '../../services/user-service/user.service';
 import { PageChangedEvent, BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AlertService } from '../../../shareds/services/alert-service/alert.service';
@@ -8,7 +8,10 @@ import { AppURL } from '../../../app.url';
 import { AuthURL } from '../../authentication.url';
 import { CompanyService } from '../../services/company-service/company.service';
 import { Employee } from '../../../shareds/model/employee.model';
-
+import { CrurrentService } from '../../../shareds/services/get-crurrent-service/crurrent.service';
+import { cuuren } from '../../../shareds/model/current.model';
+import { AuthenService } from '../../../services/authen.service';
+declare let  App;
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -24,19 +27,23 @@ export class UserListComponent implements OnInit {
   searchText: string = '';
   serachType: UserSearchKey;
   searchTypeItems: UserSearchKey[] = [
-    { key: 'idcard', value: 'ค้นหาจากหมายเลขบัตรประชาชน' }
+    { key: 'firstName', value: 'ค้นหาจากชื่อผู้ใช้' }
   ];
   // ตัวแปรรับค่า User
   items: IUser;
-
+  private userLogin: cuuren = new cuuren();
+  Role = IRoleAccount;
 
 
   constructor(
+
     private userService: UserService,
     private alert: AlertService,
     private router: Router,
     private modalService: BsModalService,
-    private companySrvice: CompanyService
+    private companySrvice: CompanyService,
+    private crurrentService: CrurrentService,
+    private authen: AuthenService
 
   ) {
     //ดึงข้อมูลผู้ใช้ลงในตาราง
@@ -48,7 +55,9 @@ export class UserListComponent implements OnInit {
 
   }
 
-
+  getJobnow(nowjob:INowJob){
+    return INowJob[nowjob];
+  }
   // ค้นหาข้อมูล
   onSearchItem() {
     this.getUserList({
@@ -127,13 +136,29 @@ export class UserListComponent implements OnInit {
       this.companySrvice.addEmployee
         (employee).subscribe(
           res => {
-            this.alert.notify('เพิ่มพนักงานสำเร็จ รอการยืนยันจากพนักงาน', 'info');
+            this.alert.notify('เพิ่มพนักงานสำเร็จ', 'info');
           },
           err => {
             this.alert.notify(err.Message)
           }
         );
     });
+  }
+  getCurrentCompany() {
+    this.crurrentService.getCurrentCompany().subscribe(
+      res => {
+        this.userLogin = res.json();
+        console.log(this.userLogin);
+        // โหลดข้อมูล script สำหรับ sidebar
+        setTimeout(() => App.initialLoadPage(), 100);
+
+      },
+      err => {
+        console.log(err);
+        this.authen.clearAuthenticated();
+        this.router.navigate(['/', AppURL.Login]);
+      }
+    );
   }
 
 

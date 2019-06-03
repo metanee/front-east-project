@@ -4,7 +4,7 @@ import { AccountService } from '../../../shareds/services/account-service/accoun
 import { AlertService } from '../../../shareds/services/alert-service/alert.service';
 import { User } from '../../../shareds/model/user.model';
 import { CrurrentService } from '../../../shareds/services/get-crurrent-service/crurrent.service';
-import { BsModalRef, BsModalService, BsLocaleService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService, BsLocaleService, DatePickerComponent } from 'ngx-bootstrap';
 import { SharedsService } from '../../../shareds/services/shareds-service/shareds.service';
 import { UploadService } from '../../../shareds/services/uploadimage-service/upload.service';
 import { DatePipe } from '@angular/common';
@@ -20,7 +20,82 @@ export class ProfileComponent implements OnInit {
   modalRef: BsModalRef;
   public setdob: string;
 
+  salaryJobexpItem: any[] = [
+    '9,000 - 15,000',
+    '15,000 - 20,000',
+    'มากกว่า 20,000'
+  ]
+  startmonthJobexpItem: any[] = [
+    'มกราคม',
+    'กุมภาพันธ์',
+    'มีนาคม',
+    'เมษายน',
+    'พฤษภาคม',
+    'มิถุนายน',
+    'กรกฎาคม',
+    'สิงหาคม',
+    'กันยายน',
+    'ตุลาคม',
+    'พฤษจิกายน',
+    'ธันวาคม',
+  ]
 
+  startyearEducationItem: any[] = [
+    'พ.ศ. 2563',
+    'พ.ศ. 2562',
+    'พ.ศ. 2561',
+    'พ.ศ. 2560',
+    'พ.ศ. 2559',
+    'พ.ศ. 2558',
+    'พ.ศ. 2557',
+    'พ.ศ. 2556',
+    'พ.ศ. 2555',
+    'พ.ศ. 2554',
+    'พ.ศ. 2553',
+    'พ.ศ. 2552',
+    'พ.ศ. 2551',
+    'พ.ศ. 2550',
+    'พ.ศ. 2549',
+    'พ.ศ. 2548',
+    'พ.ศ. 2547',
+    'พ.ศ. 2546',
+    'พ.ศ. 2545',
+    'พ.ศ. 2544',
+    'พ.ศ. 2543',
+    'พ.ศ. 2542',
+    'พ.ศ. 2541',
+    'พ.ศ. 2540',
+    'พ.ศ. 2539',
+    'พ.ศ. 2538',
+    'พ.ศ. 2537',
+    'พ.ศ. 2536',
+    'พ.ศ. 2535',
+    'พ.ศ. 2534',
+    'พ.ศ. 2533',
+    'พ.ศ. 2532',
+    'พ.ศ. 2531',
+    'พ.ศ. 2530',
+    'พ.ศ. 2529',
+    'พ.ศ. 2528',
+    'พ.ศ. 2527',
+    'พ.ศ. 2526',
+    'พ.ศ. 2525',
+    'พ.ศ. 2524',
+    'พ.ศ. 2523',
+    'พ.ศ. 2522',
+    'พ.ศ. 2521',
+    'พ.ศ. 2520',
+  ]
+  educationItem: any[] = [
+    'ต่ำกว่าปริญญาตรี',
+    'ปริญญาตรี',
+    'ปริญญาโท',
+    'ปริญญาเอก'
+  ]
+  genderItem: any[] = [
+    'ชาย',
+    'หญิง'
+  ]
   nationalityItem: any[] = [
     'ไทย',
     'ญี่ปุน',
@@ -31,10 +106,7 @@ export class ProfileComponent implements OnInit {
     'พุทธ',
     'อิสลาม'
   ];
-  positionItems: any[] = [
-    'Frontend Developer',
-    'Backend Developer'
-  ];
+
 
 
   constructor(
@@ -94,7 +166,7 @@ export class ProfileComponent implements OnInit {
 
       firstName: ['',Validators.required],
       lastName: ['',Validators.required],
-      birthDay: ['',Validators.required],
+      birthDay: [DatePickerComponent,Validators.required],
        gender: ['',Validators.required],
      nationality: ['',Validators.required],
      address: [''],
@@ -140,9 +212,6 @@ export class ProfileComponent implements OnInit {
       this.form.controls['username'].setValue(this.user.username);
       this.form.controls['password'].setValue(this.user.password);
       this.form.controls['gender'].setValue(this.user.gender);
-      this.setdob = this.datePipe.transform(this.user.birthDay, 'dd/MM/yyyy');
-      console.log(this.setdob)
-      this.form.controls['birthDay'].setValue(this.setdob);
       this.form.controls['nationality'].setValue(this.user.nationality);
       this.form.controls['address'].setValue(this.user.address);
       this.form.controls['religion'].setValue(this.user.religion);
@@ -164,6 +233,9 @@ export class ProfileComponent implements OnInit {
       this.form.controls['partImage'].setValue(this.user.partImage);
       this.form.controls['phone'].setValue(this.user.phone);
       this.form.controls['idcard'].setValue(this.user.idcard);
+      this.setdob = this.datePipe.transform(this.user.birthDay, 'dd/MM/yyyy');
+      console.log(this.setdob)
+      this.form.controls['birthDay'].setValue(this.setdob);
 
     },
       error => {

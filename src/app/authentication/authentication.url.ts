@@ -8,7 +8,11 @@ export const AuthURL = {
   EditUser: 'edituser',
   Employee: 'employee',
   CateCompany:'catecompany',
+  EditeCompany: 'editcompany',
   ViewUser: 'viewuser',
   Comment: 'comment',
-  ViewComment: 'viewcomment'
+  ViewComment: 'viewcomment',
+  Validate: 'validate',
+  OldEmployeeList: 'oldemployeeList'
+
 };

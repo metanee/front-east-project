@@ -27,6 +27,17 @@ export class AccountService {
     return this.http.post(url, JSON.stringify(userInfo), {headers:tokenHeader});
   }
 
+  onChangePasswordOwner(model: ChangPassword){
+    let url = this.serverPath + "/company/passwordCompanyInfo";
+    let userInfo = model;
+    let tokenHeader = new Headers({
+      'Content-Type' : 'application/json',
+      'x-auth-token' : localStorage.getItem("xAuthToken")
+    });
+    console.log(userInfo);
+    return this.http.post(url, JSON.stringify(userInfo), {headers:tokenHeader});
+  }
+
     // แก้ไขข้อมูลส่วนตัว
   updateUserInfo(model: User) {
     let url = this.serverPath + "/user/updateUserInfo";
@@ -66,7 +77,7 @@ export class AccountService {
   // เข้าสู่ระบบ
   sendCredential(model: Login) {
     let url = "http://localhost:8080/token";
-    let encodedCredentials = btoa(model.username + ":" + model.password);
+    let encodedCredentials = btoa(model.username.toLowerCase() + ":" + model.password);
     let basicHeader = "Basic " + encodedCredentials;
     let headers = new Headers({
       'Content-Type': 'application/x-www-form-urlencoded',

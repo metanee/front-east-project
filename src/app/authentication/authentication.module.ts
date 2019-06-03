@@ -15,6 +15,9 @@ import { CompanyListComponent } from './components/company-list/company-list.com
 import { EmployeeEditComponent } from './components/employees/employee-edit/employee-edit.component';
 import { EmployeeCommentComponent } from './components/employees/employee-comment/employee-comment.component';
 import { ViewCommentComponent } from './components/user-list/view-comment/view-comment.component';
+import { CompanyEditComponent } from './components/company-list/company-edit/company-edit.component';
+import { UserValidateEmployeeComponent } from './components/user-validate-employee/user-validate-employee.component';
+import { EmployeeListOldComponent } from './components/employees/employee-list-old/employee-list-old.component';
 
 
 @NgModule({
@@ -38,6 +41,9 @@ import { ViewCommentComponent } from './components/user-list/view-comment/view-c
     EmployeeEditComponent,
     EmployeeCommentComponent,
     ViewCommentComponent,
+    CompanyEditComponent,
+    UserValidateEmployeeComponent,
+    EmployeeListOldComponent,
 
   ],
 

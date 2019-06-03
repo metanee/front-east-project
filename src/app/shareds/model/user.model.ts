@@ -1,3 +1,4 @@
+
 export class User{
 
   public id:number ;
@@ -6,7 +7,7 @@ export class User{
 	public firstName: string;
 	public lastName: string;
 	public gender: string;
-	public birthDay: string;
+	public birthDay: String;
 	public nationality: string;
 	public address: string;
 	public religion: string;
@@ -28,13 +29,21 @@ export class User{
   public email: string;
   public partImage: string;
   public idcard: string;
-	public phone: string;
+  public phone: string;
+  public nowjob?: INowJob;
+  public nojob: boolean = true;
+
 }
+
+export enum INowJob{
+  ไม่ว่างงาน = 1,
+  ว่างงาน = 2
+};
 
 export enum IRoleAccount {
   Member = 1,
-  Owner,
-  Admin
+  Owner = 2,
+  Admin = 3
 }
 
 export class IUser{

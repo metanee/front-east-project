@@ -12,10 +12,12 @@ import { AccountService } from './services/account-service/account.service';
 import { CrurrentService } from './services/get-crurrent-service/crurrent.service';
 import { ValidatorsService } from './services/validators-service/validators.service';
 import { SharedsService } from './services/shareds-service/shareds.service';
+import {DataTableModule} from "angular-6-datatable";
 
 // เพิ่มภาษาไทยให้กับ Datepicker
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { thLocale } from 'ngx-bootstrap/locale';
+import { ChangPassOwnerComponent } from './components/auth-navbar/chang-pass-owner/chang-pass-owner.component';
 defineLocale('th', thLocale);
 
 @NgModule({
@@ -28,6 +30,7 @@ defineLocale('th', thLocale);
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    DataTableModule
 
 
 
@@ -36,7 +39,8 @@ defineLocale('th', thLocale);
   declarations: [
     AuthNavbarComponent,
     AuthSidebarComponent,
-    AuthContentComponent
+    AuthContentComponent,
+    ChangPassOwnerComponent
   ],
 
   exports: [
@@ -49,7 +53,9 @@ defineLocale('th', thLocale);
     ModalModule,
     PaginationModule,
     BsDatepickerModule,
-    DatePipe
+    DatePipe,
+    DataTableModule,
+    ChangPassOwnerComponent
   ],
 
   providers: [

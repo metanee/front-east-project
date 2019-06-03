@@ -4,7 +4,7 @@
             <h1>
                 <i class="fa fa-user"></i> ข้อมูลส่วนตัว
             </h1>
-            <p>หน้าแก้ไขข้อมูลส่วนตัวไม่ว่าจะเป็น ชื่อ นามสกุล และอื่นๆ</p>
+            <p>หน้าแก้ไขข้อมูลส่วนตัว</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item">
@@ -72,14 +72,19 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="">วันเกิด</label>
-                                            <input bsDatepicker type="text" class="form-control" formControlName="birthDay">
+                                            <input bsDatepicker type="text" class="form-control" formControlName="birthDay" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="">เพศ</label>
-                                            <input type="text" class="form-control" formControlName="gender">
-                                        </div>
+                                          <label for="">เพศ</label>
+                                          <select class="form-control" formControlName="gender">
+                                              <option value="">เลือกเพศ</option>
+                                              <option *ngFor="let item of genderItem" [value]="item">
+                                                  {{ item }}
+                                              </option>
+                                          </select>
+                                      </div>
                                     </div>
                                 </div>
 
@@ -129,9 +134,14 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="">การศึกษา</label>
-                                    <input type="text" class="form-control" formControlName="education">
-                                </div>
+                                  <label for="">การศึกษา</label>
+                                  <select class="form-control" formControlName="education">
+                                      <option value="">เลือกการศึกษา</option>
+                                      <option *ngFor="let item of educationItem" [value]="item">
+                                          {{ item }}
+                                      </option>
+                                  </select>
+                              </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -157,15 +167,25 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="">ปีที่เริมการศึกษา</label>
-                                    <input type="text" class="form-control" formControlName="startyearEducation">
-                                </div>
+                                  <label for="">ปีที่เริมการศึกษา</label>
+                                  <select class="form-control" formControlName="startyearEducation">
+                                      <option value="">ปีที่เริมการศึกษา</option>
+                                      <option *ngFor="let item of startyearEducationItem" [value]="item">
+                                          {{ item }}
+                                      </option>
+                                  </select>
+                              </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="">ปีที่จบการศึกษา</label>
-                                    <input type="text" class="form-control" formControlName="endyearEducation">
-                                </div>
+                                  <label for="">ปีที่จบการศึกษา</label>
+                                  <select class="form-control" formControlName="endyearEducation">
+                                      <option value="">ปีที่จบการศึกษา</option>
+                                      <option *ngFor="let item of startyearEducationItem" [value]="item">
+                                          {{ item }}
+                                      </option>
+                                  </select>
+                              </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -182,27 +202,47 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="">ระยะเวลาตั้งแต่</label>
-                                    <input type="text" class="form-control" formControlName="startmonthJobexp">
-                                </div>
+                                  <label for="">ระยะเวลาตั้งแต่</label>
+                                  <select class="form-control" formControlName="startmonthJobexp">
+                                      <option value="">ระยะเวลาตั้งแต่</option>
+                                      <option *ngFor="let item of startmonthJobexpItem" [value]="item">
+                                          {{ item }}
+                                      </option>
+                                  </select>
+                              </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="">ปี (ค.ศ)</label>
-                                    <input type="text" class="form-control" formControlName="startyearhJobexp">
-                                </div>
+                                  <label for="">ปี (พ.ศ)</label>
+                                  <select class="form-control" formControlName="startyearhJobexp">
+                                      <option value="">ปี (พ.ศ)</option>
+                                      <option *ngFor="let item of startyearEducationItem" [value]="item">
+                                          {{ item }}
+                                      </option>
+                                  </select>
+                              </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="">จนถึง</label>
-                                    <input type="text" class="form-control" formControlName="endyearJobexp">
-                                </div>
+                                  <label for="">จนถึง</label>
+                                  <select class="form-control" formControlName="endmonthJobexp">
+                                      <option value="">จนถึง</option>
+                                      <option *ngFor="let item of startmonthJobexpItem" [value]="item">
+                                          {{ item }}
+                                      </option>
+                                  </select>
+                              </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="">ปี (ค.ศ)</label>
-                                    <input type="text" class="form-control" formControlName="endmonthJobexp">
-                                </div>
+                                  <label for="">ปี (พ.ศ)</label>
+                                  <select class="form-control" formControlName="endyearJobexp">
+                                      <option value="">ปี (พ.ศ)</option>
+                                      <option *ngFor="let item of startyearEducationItem" [value]="item">
+                                          {{ item }}
+                                      </option>
+                                  </select>
+                              </div>
                             </div>
                         </div>
 
@@ -221,9 +261,14 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="">เงินเดือน</label>
-                                    <input type="text" class="form-control" formControlName="salaryJobexp">
-                                </div>
+                                  <label for="">เงินเดือน</label>
+                                  <select class="form-control" formControlName="salaryJobexp">
+                                      <option value="">เลือกเงินเดือน</option>
+                                      <option *ngFor="let item of salaryJobexpItem" [value]="item">
+                                          {{ item }}
+                                      </option>
+                                  </select>
+                              </div>
                             </div>
                         </div>
 

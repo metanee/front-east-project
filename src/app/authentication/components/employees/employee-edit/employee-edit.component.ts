@@ -89,7 +89,7 @@ export class EmployeeEditComponent implements OnInit {
       this.form.controls['firstNameEmployee'].setValue(this.employee.user.firstName);
       this.form.controls['lastNameEmployee'].setValue(this.employee.user.lastName);
       this.form.controls['partImage'].setValue(this.employee.user.partImage);
-      console.log(this.form.value['partImage'])
+      console.log(this.form.value)
     },
       error => {
         this.alert.notify(error.Message);

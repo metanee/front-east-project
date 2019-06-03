@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AppURL} from '../../../app.url';
 import { AuthURL } from '../../authentication.url';
+import { DomSanitizer } from '@angular/platform-browser';
 declare const $;
 declare const Chart;
 
@@ -12,7 +13,10 @@ declare const Chart;
 export class DashboardComponent implements OnInit {
   AppURL = AppURL;
   AuthURL = AuthURL;
-  constructor() { }
+  displayURL;
+  constructor(private sanitizer: DomSanitizer) {
+    this.displayURL = sanitizer.bypassSecurityTrustResourceUrl('"https://www.youtube.com/embed/WGBhx2E33CM"');
+  }
 
   private initalLoadChartJs() {
     var data = {

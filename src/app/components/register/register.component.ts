@@ -67,9 +67,20 @@ export class RegisterComponent implements OnInit {
       username: ['', [Validators.required, this.validators.isPassword]],
       email: ['', [Validators.required, Validators.email]],
       cemail: ['', [Validators.required, Validators.email, this.validators.compareEmail('email')]],
-      idcard: ['',[Validators.required,this.validators.isIdcard]]
+      idcard: ['',[Validators.required,this.validators.isIdcard]],
+      religion: [''],
+      gender: [''],
+      nationality: [''],
+      education: [''],
+      startyearEducation: [''],
+      endyearEducation: [''],
+      startmonthJobexp: [''],
+      startyearhJobexp: [''],
+      endmonthJobexp: [''],
+      endyearJobexp: ['']
     });
   }
+
 
 
 

@@ -14,6 +14,9 @@ import { EmployeeCommentComponent } from './components/employees/employee-commen
 import { UserRoleGuard } from '../guards/user-role.guard';
 import { IRoleAccount } from '../shareds/model/user.model';
 import { ViewCommentComponent } from './components/user-list/view-comment/view-comment.component';
+import { CompanyEditComponent } from './components/company-list/company-edit/company-edit.component';
+import { UserValidateEmployeeComponent } from './components/user-validate-employee/user-validate-employee.component';
+import { EmployeeListOldComponent } from './components/employees/employee-list-old/employee-list-old.component';
 
 const RouteLists: Routes = [
   { path: '', redirectTo: AuthURL.Dashboard, pathMatch: 'full' },
@@ -31,9 +34,12 @@ const RouteLists: Routes = [
   { path: AuthURL.CateCompany, component: CompanyCreateComponent },
   { path: AuthURL.Company, component: CompanyListComponent },
   { path: AuthURL.EditUser + '/:id', component: UserEditComponent },
+  { path: AuthURL.EditeCompany + '/:id', component: CompanyEditComponent },
   { path: AuthURL.EditEmployee + '/:id', component: EmployeeEditComponent },
   { path: AuthURL.Comment + '/:id', component: EmployeeCommentComponent },
-  { path: AuthURL.ViewComment+ '/:id', component: ViewCommentComponent}
+  { path: AuthURL.ViewComment+ '/:id', component: ViewCommentComponent},
+  { path: AuthURL.Validate, component: UserValidateEmployeeComponent},
+  { path: AuthURL.OldEmployeeList, component: EmployeeListOldComponent}
 
 
 ];

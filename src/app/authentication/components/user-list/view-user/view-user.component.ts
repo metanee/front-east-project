@@ -8,6 +8,8 @@ import { AppURL } from '../../../../app.url';
 import { AuthURL } from '../../../authentication.url';
 import { Employee } from '../../../../shareds/model/employee.model';
 import { CompanyService } from '../../../services/company-service/company.service';
+import { CrurrentService } from '../../../../shareds/services/get-crurrent-service/crurrent.service';
+import { cuuren } from '../../../../shareds/model/current.model';
 
 @Component({
   selector: 'app-view-user',
@@ -19,7 +21,7 @@ export class ViewUserComponent implements OnInit {
   private userId: number;
   private employee: Employee = new Employee();
   private user: User = new User();
-
+private userLogin: cuuren = new cuuren();
   form: FormGroup;
 
   constructor(
@@ -28,7 +30,8 @@ export class ViewUserComponent implements OnInit {
     private userService: UserService,
     private builder: FormBuilder,
     private alert: AlertService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private crurrentService: CrurrentService
   ) {
     this.activeRoute.params.forEach((params: Params) => {
       this.userId = Number.parseInt(params['id']);
@@ -129,6 +132,7 @@ export class ViewUserComponent implements OnInit {
      this.employee.firstNameEmployee = this.user.firstName;
      this.employee.lastNameEmployee = this.user.lastName;
      this.employee.genderEmployee = this.user.gender;
+     this.employee.startJobDate = new Date();
 
       this.form.controls['id'].setValue(this.user.id);
       this.form.controls['email'].setValue(this.user.email);
@@ -174,6 +178,20 @@ export class ViewUserComponent implements OnInit {
       AuthURL.ViewComment,
       this.userId
     ]);
+  }
+
+  getCurrentUser() {
+    this.crurrentService.getCurrentUser().subscribe(
+      res => {
+        this.userLogin = res.json();
+        console.log(this.userLogin);
+        // โหลดข้อมูล script สำหรับ sidebar
+        //console.log(this.userLogin.authorities[0].authority);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   ngOnInit() {
   }

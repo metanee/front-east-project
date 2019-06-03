@@ -8,4 +8,7 @@ export class Company {
   public phone: string;
   public enabled: boolean;
   public authorities : any;
+  public partImage: string;
+	public address: string;
+
 }

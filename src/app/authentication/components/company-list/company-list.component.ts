@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../../services/company-service/company.service';
 import { UserSearch, UserSearchKey } from '../../../shareds/model/user.model';
 import { Employee } from '../../../shareds/model/employee.model';
+import { Router } from '@angular/router';
+import { AppURL } from '../../../app.url';
+import { AuthURL } from '../../authentication.url';
+import { Company } from '../../../shareds/model/company.model';
 
 @Component({
   selector: 'app-company-list',
@@ -16,7 +20,8 @@ export class CompanyListComponent implements OnInit {
     { key: 'companyId', value: 'ค้นหาจากชื่อบริษัท' }
   ];
   constructor(
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private router: Router,
     ) {
       this.getCompanyList();
       this.serachType = this.searchTypeItems[0];
@@ -38,6 +43,15 @@ export class CompanyListComponent implements OnInit {
   			console.log(err);
   		}
   	);
+  }
+
+  onUpdateCompany(item: Company) {
+    console.log(item.id)
+    this.router.navigate(['',
+      AppURL.Authen,
+      AuthURL.EditeCompany,
+      item.id
+    ]);
   }
   ngOnInit() {
   }
